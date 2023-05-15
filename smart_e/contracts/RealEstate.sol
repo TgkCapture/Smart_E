@@ -51,10 +51,27 @@ contract RealEstate {
     event ReviewLiked(uint256 indexed productID, uint256 indexed reviewIndex, address indexed liker, uint256 likes);
 
 
-    function listProperty() external returns (uint256){}
+    function listProperty(address owner, uint256 price, string memory _propertyTitle, string memory _description) external returns (uint256){
+        require(price > 0, "Price Must be greater than 0.");
+
+        uint256 productID = propertyIndex++;
+        Property storage property = properties(productID);
+
+        property.productID = productID;
+        property.owner = owner;
+        property.price = price;
+        property.propertyTitle = _propertyTitle;
+        property.category = _category;
+        property.images = _images;
+        property.propertyAddress = _propertyAddress;
+        property.description = _description;
+
+        emit PropertyListed(productId, owner, price);
+
+    }
 
     function updateProperty() external returns (uint256){}
-    
+
     function buyProperty() external payable{}
 
     function getAllProperty() public view returns(Property[] memory){}
