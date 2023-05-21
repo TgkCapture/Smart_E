@@ -22,21 +22,22 @@ contract RealEstate {
 
     event PropertyListed(uint256 indexed id, address indexed owner, uint256 price);
     event PropertySold(uint256 indexed id, address indexed oldOwner, address indexed newOwner, uint256 price);
-    event PropertyResold(uint256 indexed id, address indexed oldOwner, address indexed newOwner, uint256 price)
+    event PropertyResold(uint256 indexed id, address indexed oldOwner, address indexed newOwner, uint256 price);
 
 
     struct Review {
         address reviewer;
-        uint256 productID;
+        uint256 productId;
         uint256 rating;
         string comment;
         uint256 likes;
     }
 
-    struct product {
-        uint256 productID;
+    struct Product {
+        uint256 productId;
         uint256 totalRating;
         uint256 numReviews;
+        
     }
 
 
@@ -47,17 +48,17 @@ contract RealEstate {
     uint256 public reviewsCounter;
 
 
-    event ReviewAdded(uint256 indexed productID, address indexed reviewer, uint256 rating, string comment);
-    event ReviewLiked(uint256 indexed productID, uint256 indexed reviewIndex, address indexed liker, uint256 likes);
+    event ReviewAdded(uint256 indexed productId, address indexed reviewer, uint256 rating, string comment);
+    event ReviewLiked(uint256 indexed productId, uint256 indexed reviewIndex, address indexed liker, uint256 likes);
 
 
-    function listProperty(address owner, uint256 price, string memory _propertyTitle, string memory _description) external returns (uint256){
+    function listProperty(address owner, uint256 price, string memory _propertyTitle, string memory _category, string memory _images, string memory _propertyAddress, string memory _description) external returns (uint256){
         require(price > 0, "Price Must be greater than 0.");
 
-        uint256 productID = propertyIndex++;
-        Property storage property = properties(productID);
+        uint256 productId = propertyIndex++;
+        Property storage property = properties[productId];
 
-        property.productID = productID;
+        property.productID = productId;
         property.owner = owner;
         property.price = price;
         property.propertyTitle = _propertyTitle;
@@ -66,15 +67,15 @@ contract RealEstate {
         property.propertyAddress = _propertyAddress;
         property.description = _description;
 
-        emit PropertyListed(productID, owner, price);
+        emit PropertyListed(productId, owner, price);
 
-        return productID;
+        return productId;
 
     }
 
-    function updateProperty(address owner, uint256 productID, string memory _propertyTitle, string memory _category, string memory _images, string memory _propertyAddress, string memory _description) external returns (uint256){
+    function updateProperty(address owner, uint256 productId, string memory _propertyTitle, string memory _category, string memory _images, string memory _propertyAddress, string memory _description) external returns (uint256){
 
-        Property storage property = properties(productID);
+        Property storage property = properties[productId];
 
         require(property.owner == owner, "You are not the owner");
 
@@ -84,11 +85,11 @@ contract RealEstate {
         property.propertyAddress = _propertyAddress;
         property.description = _description;
 
-        return productID;
+        return productId;
     }
 
-    function updatePrice(address owner, uint256 productID, uint256 price) external returns(string memory){
-        Property storage property = properties(productID);
+    function updatePrice(address owner, uint256 productId, uint256 price) external returns(string memory){
+        Property storage property = properties[productId];
 
         require(property.owner == owner, "You are not the owner");
 
@@ -121,7 +122,7 @@ contract RealEstate {
         for(uint256 i = 0; i < itemCount; i++){
             uint256 currentID = i + 1;
 
-            Property storage currentItem = properties(currentID);
+            Property storage currentItem = properties[currentID];
             items[currentIndex] = currentItem;
             currentIndex += 1;
 
@@ -172,73 +173,73 @@ contract RealEstate {
     }
 
 
-    function addReview(uint256 productID, uint256 rating, string calldata comment, address user) external{
-        require(rating >= 1 && rating <= 5, "rating must be between 1 and 5");
+    // function addReview(uint256 productId, uint256 rating, string calldata comment, address user) external{
+    //     require(rating >= 1 && rating <= 5, "rating must be between 1 and 5");
 
-        Property storage property = properties[productID];
+    //     Property storage property = properties[productId];
 
-        property.reviewers.push(user);
-        property.reviews.push(comment);
+    //     property.reviewers.push(user);
+    //     property.reviews.push(comment);
 
 
-        reviews[productID].push(Review(user, productID, rating, comment, 0));
-        userReviews[user].push(productID);
-        products[productID].totalRating += rating;
-        products[productID].numReviews++;
+    //     reviews[productId].push(Review(user, productId, rating, comment, 0));
+    //     userReviews[user].push(productId);
+    //     products[productId].totalRating += rating;
+    //     products[productId].numReviews++;
 
-        emit ReviewAdded(productID, user, rating, comment);
+    //     emit ReviewAdded(productId, user, rating, comment);
 
-        reviewsCounter++;
-    }
+    //     reviewsCounter++;
+    // }
 
-    function getProductReviews(uint256 productID) external view returns(Review[] memory){
-        return reviews[productID];
-    }
+    // function getProductReviews(uint256 productId) external view returns(Review[] memory){
+    //     return reviews[productId];
+    // }
 
-    function getUserReviews(address user) external view returns (Review[] memory){
+    // function getUserReviews(address user) external view returns (Review[] memory){
 
-        uint256 totalReviews = userReviews[user].length;
+    //     uint256 totalReviews = userReviews[user].length;
 
-        Review[] memory userProductReviews = new Review[](totalReviews);
+    //     Review[] memory userProductReviews = new Review[](totalReviews);
 
-        for(uint256 i = 0; i < userReviews[user].length; i++){
-            uint256 productID = userReviews[user][i];
-            Review[] memory productReviews = reviews[productID];
+    //     for(uint256 i = 0; i < userReviews[user].length; i++){
+    //         uint256 productId = userReviews[user][i];
+    //         Review[] memory productReviews = reviews[productId];
 
-            for (uint256 j = 0; j < productReviews.length; j++){
-                if(productReviews[j].reviewer == user){
-                    userProductReviews[i] = productReviews[j];
-                }
-            }
-        }
+    //         for (uint256 j = 0; j < productReviews.length; j++){
+    //             if(productReviews[j].reviewer == user){
+    //                 userProductReviews[i] = productReviews[j];
+    //             }
+    //         }
+    //     }
 
-        return userProductReviews;
-    } 
+    //     return userProductReviews;
+    // } 
 
-    function likeReview(uint256 productID, uint256 reviewIndex, address user) external{
-        Review storage review = reviews[productID][reviewIndex];
+    // function likeReview(uint256 productId, uint256 reviewIndex, address user) external{
+    //     Review storage review = reviews[productId][reviewIndex];
 
-        review.likes++;
-        emit ReviewLiked(productID, reviewIndex, user, review.likes)
-    }
+    //     review.likes++;
+    //     emit ReviewLiked(productId, reviewIndex, user, review.likes);
+    // }
 
-    function getHighestratedProduct() external view returns (uint256){
-        uint256 highestRating = 0;
-        uint256 highestRatedProduct = 0;
+    // function getHighestratedProduct() external view returns (uint256){
+    //     uint256 highestRating = 0;
+    //     uint256 highestRatedProductId = 0;
 
-        for(uint256 i = 0; i < reviewsCounter; i++){
-            uint256 productID = i + 1;
+    //     for(uint256 i = 0; i < reviewsCounter; i++){
+    //         uint256 productId = i + 1;
 
-            if(products[productID].numReviews > 0){
-                uint256 avgRating = products[productID].totalRating / products[productID].numReviews;
+    //         if(products[productId].numReviews > 0){
+    //             uint256 avgRating = products[productId].totalRating / products[productId].numReviews;
 
-                if(avgRating > highestRating){
-                    highestRating = avgRating;
-                    highestRatedProductID = productID;
-                }
-            }
-        }
+    //             if(avgRating > highestRating){
+    //                 highestRating = avgRating;
+    //                 highestRatedProductId = productId;
+    //             }
+    //         }
+    //     }
 
-        return highestRatedProductID;
-    }  
+    //     return highestRatedProductId;
+    // }  
 }
