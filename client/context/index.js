@@ -6,8 +6,8 @@ import { ethers } from "ethers";
 
 const StateContext = createContext();
 
-export const StateContextProvider = ({ children }) => {
-    const { contract } = useContract("0x7c9Ede0a2951EE48FD2bC590b7DAA44E5C9CDaAF");
+export const StateContextProvider = ({ children }) => { 
+    const { contract } = useContract("0xB3987c547Db342380e23cAaa9074fd15b99F97f6");
 
     const address = useAddress();
     const connect = useMetamask();
