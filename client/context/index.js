@@ -149,7 +149,7 @@ export const StateContextProvider = ({ children }) => {
     // 7:get all property
     const getPropertiesData = async () => {
         
-        const properties = await contract.call("getAllProperties");
+        const properties = await contract.call("getAllProperty");
     
         
         const listingPrice = await contract.call("listingPrice");
@@ -177,7 +177,7 @@ export const StateContextProvider = ({ children }) => {
       };
 
     // 8: get highest product
-    const {data: getHighestratedProduct} = useContractRead(contract, "getHighestratedProduct");
+    const {data: getHighestRatedProduct} = useContractRead(contract, "getHighestratedProduct");
 
     // 9: getProductReviews
     const getProductReviewsFunction = async (productId) => {
