@@ -1,6 +1,10 @@
-import react from "react";
+import React from "react";
+import { getTopCreators } from "@/utils";
+import activity from "@/pages/activity";
+import Link from "next/link";
 
-const ActivityOne = () => {
+const ActivityOne = ({ properties, totalReviews, popular }) => {
+    const creators = getTopCreators(properties);
 
     return (
         <section>
@@ -13,13 +17,14 @@ const ActivityOne = () => {
                 <div className="Activity-content-content">
                     <div className="Activity-content-contents">
                         <div className="Activity-pane">
+                            {properties?.map((activity, i) => (
                             <div className="Activity-box">
                                 <div className="Activity-box-logo">
-                                    <img src="icons/image_0.jpg" alt="" />
+                                    <img src={activity.image} alt="" />
                                 </div>
                                 <div className="Activity-box-content">
                                     <div className="Activity-box-title">
-                                        <p>Heading Title</p>
+                                        <p>{activity.title.slice(0, 25)}</p>
                                     </div>
                                     <div className="Activity-box-name">
                                         <p>Price Tag</p>
@@ -29,22 +34,7 @@ const ActivityOne = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="Activity-box">
-                                <div className="Activity-box-logo">
-                                    <img src="icons/image_0.jpg" alt="" />
-                                </div>
-                                <div className="Activity-box-content">
-                                    <div className="Activity-box-title">
-                                        <p>Heading Title</p>
-                                    </div>
-                                    <div className="Activity-box-name">
-                                        <p>Price Tag</p>
-                                    </div>
-                                    <div className="Activity-box-subname">
-                                        <p>Today, 2:00 AM</p>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <div className="Activity-on-pane">
                             <div className="Activity-on-section">
@@ -53,13 +43,13 @@ const ActivityOne = () => {
                                 </div>
                                 <div className="Activity-on-pane-content">
                                     <div className="Activity-on-pane-box">
-                                        <p>Stats</p>
+                                        <p>Total Property: {properties.length} </p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Stats</p>
+                                        <p>Users: {creators.length}</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Stats new</p>
+                                        <p>Reviews: {totalReviews}</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
                                         <p>new data is here</p>
@@ -81,34 +71,56 @@ const ActivityOne = () => {
                                 </div>
                                 <div className="Activity-on-pane-content">
                                     <div className="Activity-on-pane-box">
-                                        <p>Category</p>
+                                        <p>Country</p>
                                     </div>
                                 </div>
                                 <div className="Activity-on-pane-content">
                                     <div className="Activity-on-pane-box">
-                                        <p>Category</p>
+                                        <p>Office</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Category 1</p>
+                                        <p>Rental</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Category 3</p>
+                                        <p>Farmhouse</p>
                                     </div>
                                 </div>
                                 <div className="Activity-on-pane-content">
                                     <div className="Activity-on-pane-box">
-                                        <p>Category</p>
+                                        <p>Commercial</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Category</p>
+                                        <p>Housing</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Category</p>
+                                        <p>Others</p>
                                     </div>
                                     <div className="Activity-on-pane-box">
-                                        <p>Category</p>
+                                        <p>New Categories</p>
                                     </div>
                                 </div>
+                            </div>
+                            <div className="Activity-on-section">
+                                <div className="Activity-on-pane-heading">
+                                    <p>Popular Property</p>
+                                </div>
+                                <div className="Activity-on-pane-content">
+                                    
+                                    <div className="Activity-on-pane-box">
+                                        {/* <Link href={{ pathname: `/category/${activity.category}`,}} >
+                                            {activity.category}
+                                        </Link> */}
+                                        <Link
+                                        href={{
+                                            pathname: `/propertyView`,
+                                            query: { property: `${popular}` },
+                                        }}
+                                        
+                                        >
+                                        Check Now
+                                        </Link>
+                                    </div>
+                                </div>                                
                             </div>
                         </div>
                     </div>
