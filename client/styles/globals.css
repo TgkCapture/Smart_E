@@ -359,6 +359,12 @@ section{
   font-weight: 600;
 }
 
+.pane-heading{
+  font-size: 20px;
+  font-weight: 400;
+  font-weight: 800;
+}
+
 .pane-contain{
   padding: 7px 0px 10px 0px;
   font-size: 12px;
@@ -376,14 +382,26 @@ section{
 }
 
 .pane-name{
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: darkslategray;
 }
 
+.pane-name-two{
+  font-size: 18px;
+  font-weight: 600;
+  color: darkslategray;
+}
+
+
 .pane-subname{
   font-size: 12px;
   color: gray;
+}
+
+.pane-subname-owner{
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .pane-button button{
@@ -507,3 +525,99 @@ section{
   color: white;
 }
 
+/* Activity */
+.Activity-content-content{
+  min-height: 60vh;
+  padding: 40px;
+  background: whitesmoke;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.Activity-content-contents{
+  width: 90%;
+  display: flex;
+  gap: 40px;
+}
+
+.Activity-pane{
+  width: 70%;
+}
+
+.Activity-box{
+  margin-bottom: 7px;
+  padding: 12px 20px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px darkgray;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+}
+
+.Activity-box:hover {
+  color: #6C63FF;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.Activity-box-logo img{
+  width: 130px;
+  height: 100px;
+  border-radius: 3px;
+}
+
+.Activity-box-content{
+  width: 100%;
+}
+
+.Activity-box-title{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Activity-box-name{
+  padding: 2px 0px 10px 0px;
+  font-size: 12px;
+  color: gray;
+}
+
+.Activity-box-subname{
+  font-size: 13px;
+}
+
+.Activity-on-pane{
+  width: 30%;
+}
+
+.Activity-on-section{
+  padding-bottom: 20px;
+}
+
+.Activity-on-pane-heading{
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.Activity-on-pane-content{
+  padding: 7px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.Activity-on-pane-box{
+  width: auto;
+  padding: 5px 7px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px darkgray;
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+}
+
+.Activity-on-pane-box:hover {
+  color: #6C63FF;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
