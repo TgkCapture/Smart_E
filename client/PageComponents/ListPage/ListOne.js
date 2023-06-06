@@ -1,7 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import Loader from "../Components/Loader/Loader";
 
-const ListOne = ({ properties }) => {
+const ListOne = ({properties, property, buyingProperty, address, isLoading, buyLoading, }) => {
+      
+
+
 
     const OnPopup = (id,num) => {
         if(num == 0){
@@ -43,7 +46,11 @@ const ListOne = ({ properties }) => {
                         <div>
                             <div className="box" onClick={() => OnPopup(`popup-${i}`,0)}>
                                 <div className="box-logo">
+                                    {isLoading ? (
+                                        <Loader />
+                                    ) : (
                                     <img src={property.image} alt="Listed_House" />
+                                    )}
                                 </div>
                                 <div className="box-content">
                                     <div className="box-heading">
@@ -55,7 +62,7 @@ const ListOne = ({ properties }) => {
                                         </div>
                                     </div>
                                     <div className="box-price">
-                                        <p>{property.price} ETH</p>
+                                        <p>{property.price} MATIC</p>
                                     </div>
                                 </div>                        
                             </div> 
@@ -76,13 +83,39 @@ const ListOne = ({ properties }) => {
                                         <div className="pane-contain">
                                             <p>{property.description}</p>
                                         </div>
+                                        <hr />
+
+                                        <div className="pane-subname-owner">
+                                        <p><bold>Owner: </bold>{property?.owner?.slice(0, 20)}...</p>
+                                        </div>
+                                        
+                                        
+                                        <div className="pane-option">
+                                            <div className="pane-box">
+                                                <div className="pane-name-two">
+                                                    <p>Category</p>
+                                                </div>
+                                                <div className="pane-subname">
+                                                    <p>{property.category}</p>
+                                                </div>
+                                            </div>
+                                            <div className="pane-box">
+                                                <div className="pane-name-two">
+                                                    <p>Reviews</p>
+                                                </div>
+                                                <div className="pane-subname">
+                                                    <p>{property.reviewers.length}</p>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+
                                         <div className="pane-option">
                                             <div className="pane-box">
                                                 <div className="pane-name">
                                                     <p>Price</p>
                                                 </div>
                                                 <div className="pane-subname">
-                                                    <p>{property.price}</p>
+                                                    <p>{property.price} MATIC</p>
                                                 </div>
                                             </div>
                                             <div className="pane-box">
@@ -92,10 +125,11 @@ const ListOne = ({ properties }) => {
                                                 <div className="pane-subname">
                                                     <p>{property.address}</p>
                                                 </div>
-                                            </div>
+                                            </div>                                            
                                         </div>
+                                        
                                         <div className="pane-button">
-                                            <button>Buy</button>
+                                            <button onClick={() => buyingProperty()}>Buy</button>
                                         </div>
                                     </div>
                                 </div>

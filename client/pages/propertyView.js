@@ -11,8 +11,10 @@ const propertyView = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [properties, setProperties] = useState([]);
+    const [property, setProperty] = useState();
+    const [buyLoading, setBuyLoading] = useState(false);
   
-    const { address, contract, getPropertiesData } = useStateContext();
+    const { address, contract, getPropertiesData, buyPropertyFunction, } = useStateContext();
 
     const fetchProperty = async () => {
         setIsLoading(true);
@@ -50,6 +52,18 @@ const propertyView = () => {
           }
         });
       }
+
+      // Buy Property
+    const buying = {
+        productID: property?.productID,
+        amount: property?.price,
+    };
+
+    const buyingProperty = async () => {
+        setBuyLoading(true);
+        const data = await buyPropertyFunction(buying);
+        setBuyLoading(false);
+    };
     
       const creators = getTopCreators(properties);
       console.log(creators);
@@ -60,7 +74,14 @@ const propertyView = () => {
     return (
         <div>
             <Header />
-            <ListOne properties={properties}/>
+            <ListOne 
+            properties={properties} 
+            property={property} 
+            buyingProperty={buyingProperty}
+            address={address}
+            isLoading={isLoading}
+            buyLoading={buyLoading}            
+            />
 
             <Footer />
         </div>

@@ -1,10 +1,6 @@
 import React from 'react';
 import { useStateContext } from '@/context';
-// import SVG from 'react-inlinesvg';
-// import {script} from '../../styles/scripts/script.js';
 import '@/styles/script.js';
-
-
 
 
 const Header = () => {
@@ -27,9 +23,6 @@ const Header = () => {
         }
     }
 
-    const UBalance = userBalance;
-        
-
   return (   
     
     <header>
@@ -48,7 +41,7 @@ const Header = () => {
                         <a href='#' className='navbar-link'>Explore</a>
                         <div className="drop" id="explore">
                             <div className="drop-menu">
-                                <a href='#' className='navbar-link'>Option 1</a>
+                                <a href='activity' className='navbar-link'>Activity</a>
                             </div>
                            
                             <div className="drop-menu">
@@ -90,7 +83,7 @@ const Header = () => {
                     <div className="profile-drop" id="drop">
                         <div className="drop-menu">
                             <h3>Account Balance</h3>
-                            <p className='balance'>{UBalance}</p>
+                            <p className='balance'>{userBalance}</p>
                         </div>
                         <hr />
                         <div className="drop-menu">

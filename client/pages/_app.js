@@ -1,6 +1,4 @@
 import '@/styles/globals.css';
-import '@/styles/footer.css';
-import '@/styles/header.css';
 import '@/styles/heroStyle.css';
 import '@/styles/script.js';
 
