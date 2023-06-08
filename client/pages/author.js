@@ -5,6 +5,7 @@ import React, {useState, useEffect} from "react";
 import Header from "@/PageComponents/Components/Header";
 import Footer from "@/PageComponents/Components/Footer";
 import { useStateContext } from "@/context";
+import AuthorOne from "@/PageComponents/AuthorPage/AuthorOne";
 
 const author = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +31,13 @@ const author = () => {
     return (
         <div>
             <Header />
-            {/* <AuthorOne />
+            <AuthorOne 
+            address={address}
+            author={author}
+            properties={properties}
+            
+            />
+            {/* 
             <AuthorTwo address={address} author={author}/>
             <AuthorThree properties={properties} author={author} />
             <AuthorFour />

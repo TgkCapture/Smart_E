@@ -27,7 +27,7 @@ const ActivityOne = ({ properties, totalReviews, popular }) => {
                                         <p>{activity.title.slice(0, 25)}</p>
                                     </div>
                                     <div className="Activity-box-name">
-                                        <p>Price Tag</p>
+                                        <p>{activity.owner.slice(0, 25)}...</p>
                                     </div>
                                     <div className="Activity-box-subname">
                                         <p>Today, 2:00 AM</p>
@@ -107,13 +107,10 @@ const ActivityOne = ({ properties, totalReviews, popular }) => {
                                 <div className="Activity-on-pane-content">
                                     
                                     <div className="Activity-on-pane-box">
-                                        {/* <Link href={{ pathname: `/category/${activity.category}`,}} >
-                                            {activity.category}
-                                        </Link> */}
+
                                         <Link
                                         href={{
-                                            pathname: `/propertyView`,
-                                            query: { property: `${popular}` },
+                                           query: { property: `${popular}` },
                                         }}
                                         
                                         >
