@@ -110,6 +110,7 @@ const ActivityOne = ({ properties, totalReviews, popular }) => {
 
                                         <Link
                                         href={{
+                                            pathname: `/propertyView`,
                                            query: { property: `${popular}` },
                                         }}
                                         
