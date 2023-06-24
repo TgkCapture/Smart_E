@@ -195,13 +195,12 @@ contract RealEstate {
 
     function addReview(uint256 productId, uint8 rating, string calldata comment, address user) external {
         require(rating >= 1 && rating <= 5, "Rating must be between 1 and 5.");
-        //PROPERTY
+        
         Property storage property = properties[productId];
 
         property.reviewers.push(user);
         property.reviews.push(comment);
 
-        //REVIEW
         reviewsCounter;
         reviews[productId].push(Review(user, productId, rating, comment, 0, reviewsCounter));
         userReviews[user].push(productId);
