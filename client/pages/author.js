@@ -11,6 +11,7 @@ const author = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [properties, setProperties] = useState([]);
     const [author, setAuthor] = useState([]);
+    const [property, setProperty] = useState();
 
     const { address, contract, getUserPropertiesFunction, getPropertiesData } = useStateContext;
 
@@ -35,16 +36,9 @@ const author = () => {
             address={address}
             author={author}
             properties={properties}
+            property={property}
             
             />
-            {/* 
-            <AuthorTwo address={address} author={author}/>
-            <AuthorThree properties={properties} author={author} />
-            <AuthorFour />
-            <AuthorFive />
-            <Footer /> */}
-
-
             <Footer />
         </div>
     );

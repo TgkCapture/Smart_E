@@ -7,19 +7,26 @@ import { useStateContext } from "@/context";
 import { useState, useEffect } from "react";
 import { getTopCreators } from "../utils";
 
+import { useRouter } from "next/router";
+
 const propertyView = () => {
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [properties, setProperties] = useState([]);
     const [property, setProperty] = useState();
     const [buyLoading, setBuyLoading] = useState(false);
   
-    const { address, contract, getPropertiesData, buyPropertyFunction, } = useStateContext();
+    const { address, contract, getPropertiesData, buyPropertyFunction, getPropertyFunction, } = useStateContext();
+
+    const router = useRouter();
+    const { query } = router;
 
     const fetchProperty = async () => {
-        setIsLoading(true);
-        const data = await getPropertiesData();
-        setProperties(data);
+        const data = await getPropertyFunction(query.property);
+        // setIsLoading(true);
+        const dataProperties = await getPropertiesData();
+        setProperties(dataProperties);
+        setProperty(data);
         setIsLoading(false);
       };
 
@@ -56,20 +63,18 @@ const propertyView = () => {
       // Buy Property
     const buying = {
         productID: property?.productID,
-        amount: property?.price,
-    };
+        amount: property?.price,    
+    };  
 
     const buyingProperty = async () => {
         setBuyLoading(true);
         const data = await buyPropertyFunction(buying);
         setBuyLoading(false);
+        setProperty(data);
     };
     
       const creators = getTopCreators(properties);
-      console.log(creators);
-    
-      console.log(housing?.length);
-  
+      console.log(properties);  
 
     return (
         <div>
@@ -86,7 +91,6 @@ const propertyView = () => {
             <Footer />
         </div>
     );
-
 };
 
 export default propertyView;
