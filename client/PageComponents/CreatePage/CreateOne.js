@@ -48,11 +48,11 @@ const CreateOne = () => {
         });
       };
 
-      const onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-          setFile(URL.createObjectURL(event.target.files[0]));
-        }
-      };
+    //   const onImageChange = (event) => {
+    //     if (event.target.files && event.target.files[0]) {
+    //       setFile(URL.createObjectURL(event.target.files[0]));
+    //     }
+    //   };
 
        //UPLOAD TO PINATA
   const handleUpload = async () => {

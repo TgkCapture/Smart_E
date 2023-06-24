@@ -45,7 +45,7 @@ const Header = () => {
                             </div>
                            
                             <div className="drop-menu">
-                                <a href='#' className='navbar-link'>Option 1</a>
+                                <a href='author' className='navbar-link'>Authors</a>
                             </div>
                            
                             <div className="drop-menu">

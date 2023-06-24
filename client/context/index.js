@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext, createContext} from "react";
 
 import {useAddress, useContract, useMetamask, useContractWrite, useContractRead, useContractEvents, useDisconnect, useSigner, useConnectionStatus, } from "@thirdweb-dev/react";
 
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 
 const StateContext = createContext();
 
@@ -19,9 +19,6 @@ export const StateContextProvider = ({ children }) => {
 
     const [userBalance, setUserBalance] = useState();
      
-
-    
-
     // 1:list property
     // const { mutateAsync: listProperty} = useContractWrite(contract, "listProperty");
 
@@ -57,8 +54,8 @@ export const StateContextProvider = ({ children }) => {
     // 2:update property
     const { mutateAsync: updateProperty} = useContractWrite(contract, "updateProperty");
 
-    const updatePropertyFunction = async(from) => {
-        const {productId, propertyTitle, description, category, images, propertyAddress} = from;
+    const updatePropertyFunction = async(form) => {
+        const {productId, propertyTitle, description, category, images, propertyAddress} = form;
 
         try {
             const data = await updateProperty({
@@ -92,24 +89,29 @@ export const StateContextProvider = ({ children }) => {
         } catch (err) {
           console.error("contract call failure", err);
         }
+        console.log("Your Product ID:",productID);
     };
 
     // 4:buy property
     // const { mutateAsync: buyProperty } = useContractWrite(contract, "buyProperty");
 
     const buyPropertyFunction = async (buying) => {
-        const { productID, amount } = buying;
-        const money = ethers.utils.parseEther(amount);
-    
-        try {
-          const data = await contract.call("buyProperty", [productID, address], {
-            value: money.toString(),
-          });
-          console.info("contract call successs", data);
-          window.location.reload();
-        } catch (err) {
-          console.error("contract call failure", err);
-        }
+      const { productId, amount="0.00000025"} = buying;
+      const money = ethers.utils.parseEther(amount);
+
+      // const stringMoney = ethers.utils.formatEther(money);
+      console.log("Your Product ID:",productId);
+      console.log("Your Amount:",amount);
+      
+      try {
+        const data = await contract.call("buyProperty", [productId, address], {
+          value: money.toString(),
+        });
+        console.info("contract call successs", data);
+        window.location.reload();
+      } catch (err) {
+        console.error("contract call failure", err);
+      }
     };
 
     // 5:add review
@@ -149,7 +151,7 @@ export const StateContextProvider = ({ children }) => {
     // 7:get all property
     const getPropertiesData = async () => {
         
-        const properties = await contract.call("getAllProperty");
+        const properties = await contract.call("getAllProperty"); //getAllproperty
     
         
         const listingPrice = await contract.call("listingPrice");
