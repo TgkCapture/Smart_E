@@ -1,7 +1,7 @@
 import React from "react";
 import Loader from "../Components/Loader/Loader";
 
-const ListOne = ({properties, property, buyingProperty, address, isLoading, buyLoading, }) => {
+const ListOne = ({ properties, property, buyingProperty, address, isLoading, buyLoading, }) => {
       
 
 
@@ -40,36 +40,33 @@ const ListOne = ({properties, property, buyingProperty, address, isLoading, buyL
                     </div>
                 </div>
                 <div className="content-content">  
-                    {properties
-                    .map((property, i) => (
-                                   
+                    
+                        {properties?.map((prop, i) => (          
                         <div>
                             <div className="box" onClick={() => OnPopup(`popup-${i}`,0)}>
                                 <div className="box-logo">
-                                    {isLoading ? (
-                                        <Loader />
-                                    ) : (
-                                    <img src={property.image} alt="Listed_House" />
-                                    )}
+                                    
+                                    <img src={prop.image} alt="Listed_House" />
+                                    
                                 </div>
                                 <div className="box-content">
                                     <div className="box-heading">
                                         <div className="box-name">
-                                            <p>{property.title.length >= 25 ? `${property.title.slice(0, 22)}...`: property.title}</p>
+                                            <p><p>{prop.title.length >= 25 ? `${prop.title.slice(0, 22)}...`: prop.title}</p></p>
                                         </div>
                                         <div className="box-subname">
-                                            <p>{property.address}</p>
+                                            <p>{prop.address}</p>
                                         </div>
                                     </div>
                                     <div className="box-price">
-                                        <p>{property.price} MATIC</p>
+                                        <p>{prop.price} MWK</p>
                                     </div>
                                 </div>                        
                             </div> 
                             <div className="popup" id={`popup-${i}`} >
                                 <div className="property-pane">
                                     <div className="pane-logo">
-                                        <img src={property.image} alt="Property-Preview" />
+                                        <img src={prop.image} alt="Property-Preview" />
                                     </div>
                                     <div className="pane-content">
                                         <div className="pane-hide">
@@ -78,15 +75,15 @@ const ListOne = ({properties, property, buyingProperty, address, isLoading, buyL
                                             </button>
                                         </div>
                                         <div className="pane-heading">
-                                            <p>{property.title}</p>
+                                            <p>{prop.title}</p>
                                         </div>
                                         <div className="pane-contain">
-                                            <p>{property.description}</p>
+                                            <p>{prop.description}</p>
                                         </div>
                                         <hr />
 
                                         <div className="pane-subname-owner">
-                                        <p><bold>Owner: </bold>{property?.owner?.slice(0, 20)}...</p>
+                                        <p>Owner: {prop?.owner?.slice(0, 20)}...</p>
                                         </div>
                                         
                                         
@@ -96,7 +93,7 @@ const ListOne = ({properties, property, buyingProperty, address, isLoading, buyL
                                                     <p>Category</p>
                                                 </div>
                                                 <div className="pane-subname">
-                                                    <p>{property.category}</p>
+                                                    <p>{prop.category}</p>
                                                 </div>
                                             </div>
                                             <div className="pane-box">
@@ -104,7 +101,7 @@ const ListOne = ({properties, property, buyingProperty, address, isLoading, buyL
                                                     <p>Reviews</p>
                                                 </div>
                                                 <div className="pane-subname">
-                                                    <p>{property.reviewers.length}</p>
+                                                    <p>{prop.reviewers.length}</p>
                                                 </div>
                                             </div>                                            
                                         </div>
@@ -115,7 +112,7 @@ const ListOne = ({properties, property, buyingProperty, address, isLoading, buyL
                                                     <p>Price</p>
                                                 </div>
                                                 <div className="pane-subname">
-                                                    <p>{property.price} MATIC</p>
+                                                    <p>{prop.price} MWK</p>
                                                 </div>
                                             </div>
                                             <div className="pane-box">
@@ -123,21 +120,28 @@ const ListOne = ({properties, property, buyingProperty, address, isLoading, buyL
                                                     <p>Location</p>
                                                 </div>
                                                 <div className="pane-subname">
-                                                    <p>{property.address}</p>
+                                                    <p>{prop.address}</p>
                                                 </div>
                                             </div>                                            
                                         </div>
                                         
                                         <div className="pane-button">
-                                            <button onClick={() => buyingProperty()}>Buy</button>
+                                            <button onClick={() => buyingProperty()}>
+                                                {buyLoading ? (
+                                                    <Loader />
+                                                ) : (
+                                                    <>
+                                                        {address == prop?.owner ? "You own This" : `Buy`}
+                                                    </>
+                                                )}
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div> 
                         </div>
-                    
-                    ))
-                    .slice(0, 5)}                                 
+                        ))}
+                                                   
                 </div>
             </div>
     </section>
