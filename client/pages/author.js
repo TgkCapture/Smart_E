@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react";
-
 import Header from "@/PageComponents/Components/Header";
 import Footer from "@/PageComponents/Components/Footer";
 import { useStateContext } from "@/context";
-import AuthorOne from "@/PageComponents/AuthorPage/AuthorOne2";
+import AuthorOne from "@/PageComponents/AuthorPage/AuthorOne";
 
 const author = () => {
     const [isLoading, setIsLoading] = useState(false);
