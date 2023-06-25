@@ -21,9 +21,7 @@ const detail = () => {
         // getProductReviewsFunction,
         // likeReviewFunction,
         getPropertyFunction,
-        updatePriceFunction,
-
-               
+        updatePriceFunction,      
     } = useStateContext();
 
     const router = useRouter();
@@ -99,11 +97,7 @@ const detail = () => {
         window.location.reload();
     };
 
-
-
-    return <div>
-
-    </div>;
+    return<></>;
 };
 
 export default detail;

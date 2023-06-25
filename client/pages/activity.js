@@ -7,37 +7,36 @@ import { useStateContext } from "@/context";
 
 const activity = () => {
 
-    const [properties, setProperties] = useState([]);
-    const [totalReviews, setTotalReviews] = useState();
-    const [isLoading, setIsLoading] = useState(false);
+  const [properties, setProperties] = useState([]);
+  const [totalReviews, setTotalReviews] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
-    const {address, contract, getPropertiesData, totalReviewsFunction, getHighestRatedProduct, } = useStateContext();
+  const {address, contract, getPropertiesData, totalReviewsFunction, getHighestRatedProduct, } = useStateContext();
 
-    const fetchProperty = async () => {
-        setIsLoading(true);
-        const data = await getPropertiesData();
-        const reviewsLength = await totalReviewsFunction();
-        setTotalReviews(reviewsLength);
-        setProperties(data);
-        setIsLoading(false);
-      };
+  const fetchProperty = async () => {
+      setIsLoading(true);
+      const data = await getPropertiesData();
+      const reviewsLength = await totalReviewsFunction();
+      setTotalReviews(reviewsLength);
+      setProperties(data);
+      setIsLoading(false);
+    };
     
-      useEffect(() => {
-        if (contract) fetchProperty();
-      }, [address, contract]);
+    useEffect(() => {
+      if (contract) fetchProperty();
+    }, [address, contract]);
 
-
-    return (
-        <div>
-            <Header />
-            <ActivityOne
-            properties={properties}
-            totalReviews={totalReviews}
-            popular={getHighestRatedProduct?.toNumber()}            
-            />
-            <Footer />
-        </div>
-    );
+  return (
+      <div>
+          <Header />
+          <ActivityOne
+          properties={properties}
+          totalReviews={totalReviews}
+          popular={getHighestRatedProduct?.toNumber()}            
+          />
+          <Footer />
+      </div>
+  );
 };
 
 export default activity;

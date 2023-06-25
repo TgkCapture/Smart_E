@@ -23,7 +23,6 @@ const propertyView = () => {
 
     const fetchProperty = async () => {
         const data = await getPropertyFunction(query.property);
-        // setIsLoading(true);
         const dataProperties = await getPropertiesData();
         setProperties(dataProperties);
         setProperty(data);

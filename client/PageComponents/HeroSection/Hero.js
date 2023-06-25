@@ -3,8 +3,6 @@ import React from "react";
 
 const Hero = () => {
 
-
-
     return (
         <content>
             <section id="Hero">

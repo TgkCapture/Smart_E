@@ -5,7 +5,6 @@ import axios from "axios";
 import { ethers } from "ethers";
 import Loader from "../Components/Loader/Loader";
 
-
 const categories = ["Housing", "Rental", "Farmhouse", "Office", "Commercial", "Country",];
 
 const CreateOne = () => {
@@ -23,8 +22,7 @@ const CreateOne = () => {
         category: "",
         price: "",
         images: "",
-        propertyAddress: "",        //const money = ethers.utils.parseEther(amount);
-
+        propertyAddress: "",        
     });
 
     const handleFormFieldChange = (fieldName, e) => {
@@ -90,7 +88,6 @@ const CreateOne = () => {
 
     const retrieveFile = (e) => {
         const data = e.target.files[0]; //files array of files object
-        // console.log(data);
         const reader = new window.FileReader();
         reader.readAsArrayBuffer(data);
         reader.onloadend = () => {
@@ -99,10 +96,6 @@ const CreateOne = () => {
         setFileName(e.target.files[0].name);
         e.preventDefault();
     };
-
-
-
-
 
     return (
         <section>
@@ -190,8 +183,7 @@ const CreateOne = () => {
                     </div>
                 </div>
             </div>
-        </section>
-        
+        </section>        
     );
 }
 
