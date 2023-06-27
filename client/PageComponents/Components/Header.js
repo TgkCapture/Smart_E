@@ -2,7 +2,6 @@ import React from 'react';
 import { useStateContext } from '@/context';
 import '@/styles/script.js';
 
-
 const Header = () => {
     const { userBalance, disconnect, address, contract, connect } = useStateContext();
 
@@ -109,10 +108,7 @@ const Header = () => {
 
         <div className="on-blur" id="on-blur-one" onClick={() => OnDropDown('drop','on-blur-one',1)}></div>
         <div className="on-blur" id="on-blur-two" onClick={() => OnDropDown('explore','on-blur-two',1)}></div>
-    </header>
-
-    
-    
+    </header> 
   );
 }
 

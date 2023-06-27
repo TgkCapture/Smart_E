@@ -123,7 +123,7 @@ return(
                                     </div>
                                     
                                     <div className="pane-button">
-                                        <button onClick={() => buyingProperty()}>
+                                        <button onClick={() => buyingProperty(i + 1, prop.price)}>
                                             {buyLoading ? (
                                                 <Loader />
                                             ) : (

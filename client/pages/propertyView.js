@@ -11,85 +11,84 @@ import { useRouter } from "next/router";
 
 const propertyView = () => {
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [properties, setProperties] = useState([]);
-    const [property, setProperty] = useState();
-    const [buyLoading, setBuyLoading] = useState(false);
-  
-    const { address, contract, getPropertiesData, buyPropertyFunction, getPropertyFunction, } = useStateContext();
+  const [isLoading, setIsLoading] = useState(true);
+  const [properties, setProperties] = useState([]);
+  const [property, setProperty] = useState();
+  const [buyLoading, setBuyLoading] = useState(false);
 
-    const router = useRouter();
-    const { query } = router;
+  const { address, contract, getPropertiesData, buyPropertyFunction, getPropertyFunction, } = useStateContext();
 
-    const fetchProperty = async () => {
-        const data = await getPropertyFunction(query.property);
-        const dataProperties = await getPropertiesData();
-        setProperties(dataProperties);
-        setProperty(data);
-        setIsLoading(false);
-      };
+  const router = useRouter();
+  const { query } = router;
 
-      useEffect(() => {
-        if (contract) fetchProperty();
-      }, [address, contract]);
+  const fetchProperty = async () => {
+    const data = await getPropertyFunction(query.property);
+    const dataProperties = await getPropertiesData();
+    setProperties(dataProperties);
+    setProperty(data);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (contract) fetchProperty();
+  }, [address, contract]);
+
+  //CATEGORIES
+  const housing = [];
+  const rental = [];
+  const farmhouse = [];
+  const office = [];
+  const commercial = [];
+  const country = [];
     
-      //CATEGORIES
-      const housing = [];
-      const rental = [];
-      const farmhouse = [];
-      const office = [];
-      const commercial = [];
-      const country = [];
-    
-      if (!isLoading) {
-        properties.map((el) => {
-          if (el.category === "country") {
-            country.push(el);
-          } else if (el.category === "Commercial") {
-            commercial.push(el);
-          } else if (el.category === "Office") {
-            office.push(el);
-          } else if (el.category === "Farmhouse") {
-            farmhouse.push(el);
-          } else if (el.category === "Rental") {
-            rental.push(el);
-          } else if (el.category === "Housing") {
-            housing.push(el);
-          }
-        });
+  if (!isLoading) {
+    properties.map((el) => {
+      if (el.category === "country") {
+        country.push(el);
+      } else if (el.category === "Commercial") {
+        commercial.push(el);
+      } else if (el.category === "Office") {
+        office.push(el);
+      } else if (el.category === "Farmhouse") {
+        farmhouse.push(el);
+      } else if (el.category === "Rental") {
+        rental.push(el);
+      } else if (el.category === "Housing") {
+        housing.push(el);
       }
+    });
+  }
 
-      // Buy Property
-    const buying = {
-        productID: property?.productID,
-        amount: property?.price,    
-    };  
+  // Buy Property
+  const buying = {
+    productID: property?.productID,
+    amount: property?.price,    
+  };  
 
-    const buyingProperty = async () => {
-        setBuyLoading(true);
-        const data = await buyPropertyFunction(buying);
-        setBuyLoading(false);
-        setProperty(data);
-    };
-    
-      const creators = getTopCreators(properties);
-      console.log(properties);  
+  const buyingProperty = async (num, price) => {
+    setBuyLoading(true);
+    const data = await buyPropertyFunction(num, price);
+    setBuyLoading(false);
+    setProperty(data);
+  };
+  
+  const creators = getTopCreators(properties);
 
-    return (
-        <div>
-            <Header />
-            <ListOne 
-            properties={properties} 
-            property={property} 
-            buyingProperty={buyingProperty}
-            address={address}
-            isLoading={isLoading}
-            buyLoading={buyLoading}            
-            />
+  return (
+    <div>
+      <Header />
+      <ListOne 
+      properties={properties} 
+      property={property} 
+      buyingProperty={buyingProperty}
+      address={address}
+      isLoading={isLoading}
+      buyLoading={buyLoading}            
+      />
 
-            <Footer />
-        </div>
-    );
+      <Footer />
+    </div>
+  );
 };
 
 export default propertyView;

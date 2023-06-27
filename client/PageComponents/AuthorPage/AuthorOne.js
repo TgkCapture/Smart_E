@@ -116,9 +116,6 @@ const AuthorOne = ({ address, author, properties }) => {
                             ))}
                             </>
                         )}
-                                
-                        
-                       
                     </div>
                 </div>
             </div>

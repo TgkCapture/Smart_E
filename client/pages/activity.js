@@ -4,7 +4,6 @@ import Footer from "@/PageComponents/Components/Footer";
 import Header from "@/PageComponents/Components/Header";
 import { useStateContext } from "@/context";
 
-
 const activity = () => {
 
   const [properties, setProperties] = useState([]);
