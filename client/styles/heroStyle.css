@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --clr-white: #FFFFFF;
+  --clr-black: #202020;
+  --clr-grey: #707070;
+  --clr-blue: #6C63FF;
+  --clr-blue-2: #4c46b6;
+  --clr-green: #4fb646;
+}
+
+.hero {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+  
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } 
+
+
+a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .h3 {
+    color: black;
+    line-height: 1;    
+  }
+  
+  .w-100 {
+    width: 100%;
+  }
+  
+  .header{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title{
+    font-size: 28px;
+    font-weight: 700;
+    color: dodgerblue;
+  }
+  
+  
+  .enq-btn:hover {
+    background-color: var(--clr-blue);
+    color: white;
+  }
+  
+  .con-btn:hover {
+    background-color: var(--clr-blue);
+    color: white;
+  }
+  
+  section{
+    min-height: 100vh;
+    background: ghostwhite;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar-link {
+    color: black;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: block;
+  
+  }
+  
+  .navbar-link:is(:hover, :focus) { color: dodgerblue;}
+  
+  
+  /* Hero Section */
+  
+  .hero-section{
+    width: 65%;
+    display: flex;
+  }
+  
+  .pane{
+    width: 50%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hero-container{
+    width: 500px;
+  }
+  
+  .heading{
+    font-size: 14px;
+  }
+  
+  .heading-head{
+    padding: 10px 0px;
+    line-height: 50px;
+    font-size: 50px;
+    font-weight: bolder;
+    color: darkslategrey;
+  }
+  
+  .heading-content{
+    margin: 14px 0px;
+    padding: 15px 20px;
+    border-left: 1px solid rgb(199, 199, 199);
+    font-size: 12px;
+    color: darkgray;
+  }
+  
+  .heading-button button{
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    color: white;
+    background: dodgerblue;
+    cursor: pointer;
+  }
+  
+  .image{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-box{
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    background: darkslategray;
+  }
+  
+  /* About Section */
+  
+  .about-section{
+    width: 65%;
+    display: flex;
+  }
+  
+  .about-text {
+    color: dodgerblue;
+    
+  }
+  
+  .about-subtitle {
+    margin-bottom: 30px;
+    padding: 5px 20px;
+    background: hsla(9, 100%, 62%, 0.1);
+    font-size: 0.875rem;
+    font-weight: 600;
+    width: max-content;
+    border-radius: 50px;
+    margin-inline: auto;
+    margin-bottom: 15px;
+    background: hsla(9, 100%, 62%, 0.1);
+  
+  }
+  
+  /* service Section */
+  
+  .service-section{
+    width: 70%;
+    text-align: center;
+    padding: 100px;
+  }
+  
+  .panes{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px;
+  }
+  
+  .service-card {
+    position: relative;
+    background: white;
+    text-align: center;
+    padding: 40px 30px;
+    box-shadow: 0 16px 32px hsla(188, 63%, 7%, 0.1);
+  }
+  
+  .card-text {
+    color:rgb(199, 199, 199);
+    font-size: 0.875rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+  
+  .service-title {
+    padding-bottom: 30px;
+  }
+  
+  .subtitle {
+    padding-top: 50px;
+  }
+  
+  .service-subtitle {
+    padding: 5px 20px;background: hsla(9, 100%, 62%, 0.1);
+    color: dodgerblue;
+    font-size: 0.875rem;
+    font-weight: 600;
+    width: max-content;
+    border-radius: 50px;
+    margin-inline: auto;
+    margin-bottom: 15px;
+    background: hsla(9, 100%, 62%, 0.1);
+  }
+  
+  .card-title { margin-bottom: 15px; }
+  
+  .service-card .card-title > a:is(:hover, :focus) {color: dodgerblue;}
+  
+  .service-card:is(:hover, :focus) .card-link {color: dodgerblue;}
+  
+  .service-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: dodgerblue;
+    transition: 0.25s ease;
+  }
+  
+  .service-card:is(:hover, :focus)::after { width: 100%;}
+  
+  .card-icon {
+    width: max-content;
+    margin-inline: auto;
+    margin-bottom: 20px;
+  }
+  
+  /* contact section */
+  .contact-heading{
+    font-size: 14px;
+  }
+  
+  .Contact-button button{
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    color: white;
+    background: dodgerblue;
+    cursor: pointer;
+  }
+  
+  .con-btn:hover {
+    background-color: var(--clr-blue);
+    color: white;
+  }
+  
+  /* footer section */
+  
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-logo {
+    margin-right: 20px;
+  }
+  
+  .footer-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .footer-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-text-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer-text-copy {
+    font-size: 14px;
+  }
+  
