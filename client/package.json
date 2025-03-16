@@ -13,7 +13,7 @@
     "@thirdweb-dev/sdk": "^3.10.14",
     "axios": "^1.4.0",
     "ethers": "^5.7.2",
-    "next": "13.4.2",
+    "next": "14.2.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-inlinesvg": "^3.0.2"
